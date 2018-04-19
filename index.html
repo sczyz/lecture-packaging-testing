@@ -348,7 +348,7 @@
                                 p2 = jupiter(yesterday)
                                 exp = jupiter(today)
                                 obs = kepler_loc(p1, p2, 1, 1) 
-                                if exp != ohs:
+                                if exp != obs:
                                     raise ValueError("Jupiter is not where it should be!")
                         </code></pre>
                     </section>
@@ -386,13 +386,13 @@
                         </code></pre>
                         <p class="fragment">For approximate exactness:</p>
                         <pre><code data-trim class="python fragment">
-                            from numpy import assert_allclose
+                            import numpy as np
                             def test_kepler_loc():
                                 p1 = jupiter(two_days_ago)
                                 p2 = jupiter(yesterday)
                                 exp = jupiter(today)
                                 obs = kepler_loc(p1, p2, 1, 1) 
-                                assert_allclose(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
                     </section>
 
@@ -453,21 +453,21 @@
                             def def test_internal():
                                 exp = (2.0 / np.pi) * (-2.0 / (3.0 * np.pi))
                                 obs = sinc2d(np.pi / 2.0, 3.0 * np.pi / 2.0)
-                                np.assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                             def test_edge_x():
                                 exp = (-2.0 / (3.0 * np.pi))
                                 obs = sinc2d(0.0, 3.0 * np.pi / 2.0)
-                                np.assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
                         <pre><code data-trim class="python">
-                            def test_edge_x():
+                            def test_edge_y():
                                 exp = (2.0 / np.pi)
                                 obs = sinc2d(np.pi / 2.0, 0.0)
-                                np.assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                             def test_corner():
                                 exp = 1.0
                                 obs = sinc2d(0.0, 0.0)
-                                np.assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
                     </section>
 
@@ -502,7 +502,7 @@
                             ])
                             def test_add2(self, x, y, exp):
                                 obs = add2(x, y)
-                                np.assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
 
                         <pre><code data-trim class="bash fragment">
@@ -520,13 +520,13 @@
 
                     <section>
                         <pre><code data-trim class="python">
-                            from numpy import assert_equal
+                            from numpy import allclose
                             from mod import std
 
                             def test_std1():
                                 obs = std([0.0, 2.0])
                                 exp = 1.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
 
                         <pre><code data-trim class="python fragment">
@@ -541,17 +541,17 @@
                             def test_std1():
                                 obs = std([0.0, 2.0])
                                 exp = 1.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
 
                             def test_std2():
                                 obs = std()
                                 exp = 0.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
 
                             def test_std3():
                                 obs = std([0.0, 4.0])
                                 exp = 2.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
 
                         <pre><code data-trim class="python fragment">
@@ -569,27 +569,27 @@
                             def test_std1():
                                 obs = std([0.0, 2.0])
                                 exp = 1.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
 
                             def test_std2():
                                 obs = std()
                                 exp = 0.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
 
                             def test_std3():
                                 obs = std([0.0, 4.0])
                                 exp = 2.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
 
                             def test_std4():
                                 obs = std([1.0, 3.0])
                                 exp = 1.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
 
                             def test_std4():
                                 obs = std([1.0, 1.0, 1.0])
                                 exp = 0.0
-                                assert_equal(exp, obs)
+                                assert np.allclose(exp, obs)
                         </code></pre>
                         <pre><code data-trim class="python fragment">
                             def std(vals):
