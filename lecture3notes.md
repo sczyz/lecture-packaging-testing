@@ -1,4 +1,4 @@
-lecture3notes.md
+lecture3notes.md 
 
 compphys/
 |-- __init__.py
